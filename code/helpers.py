@@ -109,7 +109,7 @@ def get_schedule(season_start = None):
       ('hydrate', 'team,linescore'),
       ('site', 'en_nhlCA'),
       ('teamId', ''),
-      ('gameType', ''),
+      ('gameType', '02'),
       ('timecode', ''),
   )
 
