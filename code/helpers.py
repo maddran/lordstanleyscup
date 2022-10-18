@@ -4,6 +4,7 @@ from pandas import json_normalize
 from datetime import datetime
 from time import sleep
 import json
+import pytz
 
 def call_nhl(startSeason, endSeason=None):
 
@@ -117,4 +118,20 @@ def get_schedule(season_start = None):
   data = json.loads(response.text)
   df = pd.json_normalize(data['dates'], record_path = ['games'])
   
-  return df
+  eastern = pytz.timezone('US/Eastern')
+
+  sched_df = df.loc[:,[
+             'gameDate', 
+             'teams.home.team.abbreviation', 
+             'teams.away.team.abbreviation',
+             'teams.home.score',
+             'teams.away.score'
+           ]]
+
+
+  sched_df['gameDate'] = (pd.to_datetime(sched_df['gameDate'])
+                            .dt.tz_convert(eastern)
+                            .dt.strftime('%Y%m%d'))
+  sched_df.columns = ['gameDate', 'homeTeam', 'awayTeam', 'homeScore', 'awayScore']
+  
+  return sched_df
