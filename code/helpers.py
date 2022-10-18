@@ -135,4 +135,4 @@ def get_schedule(season_start = None):
                             .dt.strftime('%Y%m%d'))
   sched_df.columns = ['gameDate', 'homeTeam', 'awayTeam', 'homeScore', 'awayScore']
   
-  return df
+  return sched_df
