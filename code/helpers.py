@@ -112,7 +112,7 @@ def get_schedule(season_start = None):
       ('timecode', ''),
   )
 
-  respons = requests.get('https://statsapi.web.nhl.com/api/v1/schedule', headers=headers, params=params)
+  response = requests.get('https://statsapi.web.nhl.com/api/v1/schedule', headers=headers, params=params)
   
   data = json.loads(response.text)
   df = pd.json_normalize(data['dates'], record_path = ['games'])
