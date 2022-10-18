@@ -109,7 +109,7 @@ def get_schedule(season_start = None):
       ('hydrate', 'team,linescore'),
       ('site', 'en_nhlCA'),
       ('teamId', ''),
-      ('gameType', '02'),
+      ('gameType', ''),
       ('timecode', ''),
   )
 
@@ -134,4 +134,4 @@ def get_schedule(season_start = None):
                             .dt.strftime('%Y%m%d'))
   sched_df.columns = ['gameDate', 'homeTeam', 'awayTeam', 'homeScore', 'awayScore']
   
-  return sched_df
+  return df
