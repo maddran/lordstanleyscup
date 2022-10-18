@@ -3,6 +3,7 @@ import pandas as pd
 from pandas import json_normalize 
 from datetime import datetime
 from time import sleep
+import json
 
 def call_nhl(startSeason, endSeason=None):
 
@@ -111,4 +112,9 @@ def get_schedule(season_start = None):
       ('timecode', ''),
   )
 
-  return requests.get('https://statsapi.web.nhl.com/api/v1/schedule', headers=headers, params=params)
+  respons = requests.get('https://statsapi.web.nhl.com/api/v1/schedule', headers=headers, params=params)
+  
+  data = json.loads(response.text)
+  df = pd.json_normalize(data['dates'], record_path = ['games'])
+  
+  return df
