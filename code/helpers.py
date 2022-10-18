@@ -106,7 +106,7 @@ def get_schedule(season_start = None):
   params = (
       #('startDate', f'{season_start}-10-1'),
       #('endDate', f'{season_start+1}-05-15'),
-      ('season', f'{season_start}{season_start+1}')
+      ('season', f'{season_start}{season_start+1}'),
       ('hydrate', 'team,linescore'),
       ('site', 'en_nhlCA'),
       ('teamId', ''),
